@@ -66,6 +66,10 @@ The resulting file will contain the following functions and variables:
 
 `Open` allows you to read an embedded file directly. It will return a decompressing `Reader` if the file is embedded in compressed format. You should close the `Reader` after you're done with it.
 
+### `func Data(name string) string`
+
+`Data` return content of file, like html templates.
+
 ### `func ModTime(name string) time.Time`
 
 `ModTime` returns the modification time of the original file. This can be useful for caching purposes.
