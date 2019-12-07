@@ -3,6 +3,7 @@
 package files
 
 import (
+	"bytes"
 	"compress/gzip"
 	"fmt"
 	"io"
@@ -114,7 +115,14 @@ func Open(name string) (io.ReadCloser, error) {
 // Data return string content of file
 func Data(name string) string {
 	if f, ok := staticFiles[name]; ok {
-		return f.data
+		if f.size == 0 {
+			return f.data
+		}
+		zr, _ := gzip.NewReader(strings.NewReader(f.data))
+		var buf bytes.Buffer
+		io.Copy(&buf, zr)
+		zr.Close()
+		return buf.String()
 	}
 	return ""
 }
