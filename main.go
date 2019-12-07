@@ -1,4 +1,4 @@
-package main // import "bou.ke/staticfiles"
+package main
 
 import (
 	"bytes"
