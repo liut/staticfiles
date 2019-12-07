@@ -1,7 +1,7 @@
 build: template.ego.go files/files.go
 
 template.ego.go: template.ego
-	ego
+	ego -v
 
 files/files.go: template.ego.go static/*
 	@go get
