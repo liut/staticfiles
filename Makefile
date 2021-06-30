@@ -1,4 +1,6 @@
 build: template.ego.go files/files.go
+	mkdir -p dist
+	go build -ldflags "-s -w" -o dist .
 
 template.ego.go: template.ego
 	ego -v

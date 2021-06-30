@@ -54,8 +54,12 @@ func ServeHTTP(rw http.ResponseWriter, req *http.Request) {
   f, ok := staticFiles[path]
   if !ok {
     if path != "" && !strings.HasSuffix(path, "/") {
-      NotFound(rw, req)
-      return
+      if _, ok = staticFiles[path+"/index.html"]; ok {
+        path = path + "/"
+      } else {
+        NotFound(rw, req)
+        return
+      }
     }
     f, ok = staticFiles[path + "index.html"]
     if !ok {
