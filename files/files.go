@@ -64,6 +64,10 @@ func ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 			return
 		}
 	}
+	serveFile(f, rw, req)
+}
+
+func serveFile(f *staticFilesFile, rw http.ResponseWriter, req *http.Request) {
 	header := rw.Header()
 	if f.hash != "" {
 		if hash := req.Header.Get("If-None-Match"); hash == f.hash {
